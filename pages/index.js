@@ -1,5 +1,13 @@
 function Home() {
-    return  <h1>Olá, Mundo! Esse é meu estudo do Curso.dev com Filipe Deschamps. Esse curso é muito fantástico!</h1>
+  return <h1>Olá, Mundo!</h1>;
 }
 
-export default Home
+function teste() {
+  console.log("teste");
+}
+
+function teste2() {
+  console.log("Indentação errada");
+}
+
+export default Home;
