@@ -37,7 +37,10 @@ function addPepper(password) {
   const pepper = process.env.PEPPER;
 
   if (typeof pepper !== "string" || pepper.length === 0) {
-    throw new Error("A variável de ambiente PEPPER não foi configurada.");
+    throw new Error({
+      message: "A variável de ambiente PEPPER não foi configurada.",
+      action: "Defina um valor à variável de ambiente.",
+    });
   }
 
   return password + pepper;
