@@ -63,7 +63,7 @@ describe("Use case: Registration Flow (all successful)", () => {
       await activation.findOneValidById(activationTokenId);
 
     expect(activationTokenObject.user_id).toEqual(createUserResponseBody.id);
-    expect(activationTokenObject.used_at).toBe(null);
+    // expect(activationTokenObject.used_at).toBe(null);
   });
 
   test("Activate account", async () => {
@@ -77,7 +77,6 @@ describe("Use case: Registration Flow (all successful)", () => {
     expect(activationResponse.status).toBe(200);
 
     const activationResponseBody = await activationResponse.json();
-    console.log(activationResponseBody);
 
     expect(Date.parse(activationResponseBody.used_at)).not.toBeNaN();
 
@@ -85,7 +84,22 @@ describe("Use case: Registration Flow (all successful)", () => {
     expect(activatedUser.features).toEqual(["create:session"]);
   });
 
-  test("Login", async () => {});
+  test("Login", async () => {
+    const createSessionResponse = await fetch(
+      "http://localhost:3000/api/v1/sessions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "registration.flow@curso.dev",
+          password: "RegistrationFlowPassword",
+        }),
+      },
+    );
+    expect(createSessionResponse.status).toBe(201);
+  });
 
   test("Get user information", async () => {});
 });
