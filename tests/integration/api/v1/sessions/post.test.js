@@ -103,7 +103,10 @@ describe("POST /api/v1/sessions", () => {
 
       // 2. Ativação do usuário
       const activatedUser = await orchestrator.activateUser(createdUser);
-      expect(activatedUser.features).toEqual(["create:session"]);
+      expect(activatedUser.features).toEqual([
+        "create:session",
+        "read:session",
+      ]);
 
       // 4. Login
       const response = await fetch("http://localhost:3000/api/v1/sessions", {
