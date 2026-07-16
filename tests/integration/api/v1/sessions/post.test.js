@@ -7,6 +7,7 @@ beforeAll(async () => {
   await orchestrator.waitForAllServices();
   await orchestrator.clearDatabase();
   await orchestrator.runPendingMigrations();
+  await orchestrator.deleteAllEmails();
 });
 
 describe("POST /api/v1/sessions", () => {
@@ -94,11 +95,17 @@ describe("POST /api/v1/sessions", () => {
     });
 
     test("With correct 'email' and correct 'password'", async () => {
+      // 1. Criação do usuário
       const createdUser = await orchestrator.createUser({
         email: "tudo.correto@curso.dev",
         password: "tudocorreto",
       });
 
+      // 2. Ativação do usuário
+      const activatedUser = await orchestrator.activateUser(createdUser);
+      expect(activatedUser.features).toEqual(["create:session"]);
+
+      // 4. Login
       const response = await fetch("http://localhost:3000/api/v1/sessions", {
         method: "POST",
         headers: {
@@ -117,7 +124,7 @@ describe("POST /api/v1/sessions", () => {
       expect(responseBody).toEqual({
         id: responseBody.id,
         token: responseBody.token,
-        user_id: createdUser.id,
+        user_id: activatedUser.id,
         expires_at: responseBody.expires_at,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
