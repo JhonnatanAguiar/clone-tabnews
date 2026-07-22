@@ -106,6 +106,7 @@ describe("POST /api/v1/sessions", () => {
       expect(activatedUser.features).toEqual([
         "create:session",
         "read:session",
+        "update:user",
       ]);
 
       // 4. Login

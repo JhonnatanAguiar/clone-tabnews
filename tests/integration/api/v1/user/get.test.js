@@ -59,7 +59,7 @@ describe("Default user", () => {
       username: "UserWithValidSession",
       email: createdUser.email,
       password: createdUser.password,
-      features: ["create:session", "read:session"],
+      features: ["create:session", "read:session", "update:user"],
       created_at: createdUser.created_at.toISOString(),
       updated_at: activatedUser.updated_at.toISOString(),
     });
@@ -127,7 +127,7 @@ describe("Default user", () => {
       username: "UserValidButTimeHasPassed",
       email: createdUser.email,
       password: createdUser.password,
-      features: ["create:session", "read:session"],
+      features: ["create:session", "read:session", "update:user"],
       created_at: createdUser.created_at.toISOString(),
       updated_at: activatedUser.updated_at.toISOString(),
     });
