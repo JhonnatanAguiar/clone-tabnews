@@ -90,6 +90,7 @@ describe("Default user", () => {
       maxAge: session.EXPIRATION_IN_MILLISECONDS / 1000,
       path: "/",
       httpOnly: true,
+      sameSite: "Lax",
     });
   });
 
@@ -157,6 +158,7 @@ describe("Default user", () => {
       maxAge: session.EXPIRATION_IN_MILLISECONDS / 1000,
       path: "/",
       httpOnly: true,
+      sameSite: "Lax",
     });
   });
 

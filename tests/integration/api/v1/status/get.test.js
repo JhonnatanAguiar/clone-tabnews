@@ -47,6 +47,7 @@ describe("GET /api/v1/status", () => {
       expect(responseBody.dependencies.database.opened_connections).toEqual(1);
     });
   });
+
   describe("Privileged user", () => {
     test("Retrieving current system status", async () => {
       const createdUser = await orchestrator.createUser();
