@@ -40,7 +40,7 @@ describe("Default user", () => {
     const activatedUser = await orchestrator.activateUser(createdUser);
 
     // 3. Login
-    const sessionObject = await orchestrator.createSession(createdUser.id);
+    const sessionObject = await orchestrator.createSession(createdUser);
 
     const response = await fetch(`${webserver.origin}/api/v1/user`, {
       headers: {
@@ -108,7 +108,7 @@ describe("Default user", () => {
 
     const activatedUser = await orchestrator.activateUser(createdUser);
 
-    const sessionObject = await orchestrator.createSession(createdUser.id);
+    const sessionObject = await orchestrator.createSession(createdUser);
 
     jest.useRealTimers();
 
@@ -204,7 +204,7 @@ describe("Default user", () => {
       username: "UserWithExpiredSession",
     });
 
-    const sessionObject = await orchestrator.createSession(createdUser.id);
+    const sessionObject = await orchestrator.createSession(createdUser);
 
     jest.useRealTimers();
 
